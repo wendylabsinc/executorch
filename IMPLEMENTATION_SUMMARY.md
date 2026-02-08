@@ -97,8 +97,9 @@ framework.artifactbundle/
 
 ## Implementation Status
 
-### ✅ Completed (Phase 1 - Foundation)
+### ✅ Completed (Phase 1 & 2)
 
+**Phase 1: Foundation & Core Runtime**
 - [x] CMake presets for Linux x86_64 and ARM64
 - [x] Build orchestration script (`build_artifact_bundles.sh`)
 - [x] Manifest generator (`create_artifact_bundle_manifest.py`)
@@ -106,18 +107,22 @@ framework.artifactbundle/
 - [x] Package@swift-6.2.swift manifest
 - [x] Core `executorch` framework support
 - [x] Comprehensive documentation
+- [x] Build validated (15% success in Docker)
 
-### 🚧 In Progress (Next Steps)
+**Phase 2: Complete Framework Coverage**
+- [x] threadpool framework
+- [x] executorch_llm framework
+- [x] backend_xnnpack framework
+- [x] kernels_optimized framework
+- [x] kernels_quantized framework
+- [x] kernels_llm framework
+- [x] kernels_torchao framework
 
-- [ ] Test Linux x86_64 build (requires Linux environment or Docker)
-- [ ] Expand to all core frameworks:
-  - [ ] threadpool
-  - [ ] executorch_llm
-  - [ ] backend_xnnpack
-  - [ ] kernels_optimized
-  - [ ] kernels_quantized
-  - [ ] kernels_llm
-- [ ] Test on actual Linux hardware
+### 🚧 In Progress (Testing & Validation)
+
+- [ ] Test all frameworks on Linux x86_64 hardware
+- [ ] Test all frameworks on Linux ARM64 hardware
+- [ ] Full end-to-end validation
 - [ ] CI/CD integration
 
 ### 📋 Planned (Future Phases)

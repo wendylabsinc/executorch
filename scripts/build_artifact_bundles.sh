@@ -40,9 +40,15 @@ FRAMEWORK_KERNELS_LLM="kernels_llm:libcustom_ops.a:no"
 FRAMEWORK_KERNELS_OPTIMIZED="kernels_optimized:libcpublas.a,liboptimized_kernels.a,liboptimized_native_cpu_ops_lib.a,libportable_kernels.a:no"
 FRAMEWORK_KERNELS_QUANTIZED="kernels_quantized:libquantized_kernels.a,libquantized_ops_lib.a:no"
 
-# All frameworks to build (subset for Phase 1)
+# All frameworks to build (Phase 2: Complete framework coverage)
 FRAMEWORKS=(
   "$FRAMEWORK_EXECUTORCH"
+  "$FRAMEWORK_THREADPOOL"
+  "$FRAMEWORK_BACKEND_XNNPACK"
+  "$FRAMEWORK_KERNELS_OPTIMIZED"
+  "$FRAMEWORK_KERNELS_QUANTIZED"
+  "$FRAMEWORK_KERNELS_LLM"
+  "$FRAMEWORK_EXECUTORCH_LLM"
 )
 
 usage() {

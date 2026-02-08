@@ -73,6 +73,11 @@ let crossPlatformProducts = deliverables([
     ],
   ],
   "kernels_quantized": [:],
+  "kernels_torchao": [
+    "targets": [
+      "threadpool",
+    ],
+  ],
 ])
 
 // Apple-only products (macOS, iOS)

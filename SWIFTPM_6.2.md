@@ -167,18 +167,16 @@ import ExecuTorch
 
 ## Supported Frameworks
 
-### Phase 1 (Current)
+### Cross-Platform (Linux, macOS, iOS)
 
-- ✅ `executorch` - Core runtime with cross-platform support
-
-### Phase 2 (Planned)
-
-- `threadpool` - Thread pool extension
-- `executorch_llm` - LLM runner
-- `backend_xnnpack` - XNNPACK backend
-- `kernels_optimized` - Optimized kernels
-- `kernels_quantized` - Quantized kernels
-- `kernels_llm` - LLM custom kernels
+- ✅ `executorch` - Core runtime
+- ✅ `threadpool` - Thread pool extension
+- ✅ `executorch_llm` - LLM runner
+- ✅ `backend_xnnpack` - XNNPACK backend
+- ✅ `kernels_optimized` - Optimized kernels
+- ✅ `kernels_quantized` - Quantized kernels
+- ✅ `kernels_llm` - LLM custom kernels
+- ✅ `kernels_torchao` - TorchAO kernels
 
 ### Apple-Only
 

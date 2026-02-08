@@ -96,18 +96,21 @@ let result = try module.forward(inputs: [tensor])
 | iOS ARM64      | ✅     | arm64-apple-ios           |
 | iOS Simulator  | ✅     | arm64-apple-ios-simulator |
 
-## Current Frameworks
+## Available Frameworks
 
+### Cross-Platform (Linux, macOS, iOS)
 - ✅ `executorch` - Core runtime
+- ✅ `threadpool` - Thread pool extension
+- ✅ `executorch_llm` - LLM runner
+- ✅ `backend_xnnpack` - XNNPACK backend
+- ✅ `kernels_optimized` - Optimized kernels
+- ✅ `kernels_quantized` - Quantized kernels
+- ✅ `kernels_llm` - LLM custom kernels
+- ✅ `kernels_torchao` - TorchAO kernels
 
-## Coming Soon
-
-- `threadpool`
-- `executorch_llm`
-- `backend_xnnpack`
-- `kernels_optimized`
-- `kernels_quantized`
-- `kernels_llm`
+### Apple-Only
+- `backend_coreml` - CoreML backend
+- `backend_mps` - Metal Performance Shaders backend
 
 ## Troubleshooting
 

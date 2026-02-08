@@ -282,6 +282,38 @@
         "EXECUTORCH_BUILD_PRESET_FILE": "${sourceDir}/tools/cmake/preset/arm_baremetal.cmake",
         "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/examples/arm/ethos-u-setup/arm-none-eabi-gcc.cmake"
       }
+    },
+    {
+      "name": "linux-x86_64-swiftpm",
+      "displayName": "Build ExecuTorch for Linux x86_64 SwiftPM",
+      "inherits": ["common"],
+      "binaryDir": "${sourceDir}/cmake-out/swiftpm/linux-x86_64",
+      "cacheVariables": {
+        "CMAKE_SYSTEM_NAME": "Linux",
+        "CMAKE_SYSTEM_PROCESSOR": "x86_64",
+        "EXECUTORCH_BUILD_PRESET_FILE": "${sourceDir}/tools/cmake/preset/swiftpm.cmake"
+      },
+      "condition": {
+        "type": "inList",
+        "string": "${hostSystemName}",
+        "list": ["Linux"]
+      }
+    },
+    {
+      "name": "linux-aarch64-swiftpm",
+      "displayName": "Build ExecuTorch for Linux ARM64 SwiftPM",
+      "inherits": ["common"],
+      "binaryDir": "${sourceDir}/cmake-out/swiftpm/linux-aarch64",
+      "cacheVariables": {
+        "CMAKE_SYSTEM_NAME": "Linux",
+        "CMAKE_SYSTEM_PROCESSOR": "aarch64",
+        "EXECUTORCH_BUILD_PRESET_FILE": "${sourceDir}/tools/cmake/preset/swiftpm.cmake"
+      },
+      "condition": {
+        "type": "inList",
+        "string": "${hostSystemName}",
+        "list": ["Linux"]
+      }
     }
   ],
   "buildPresets": [

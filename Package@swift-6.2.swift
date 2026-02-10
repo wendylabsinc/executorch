@@ -28,7 +28,8 @@ func deliverables(_ dict: [String: [String: Any]]) -> [String: [String: Any]] {
     .reduce(into: [String: [String: Any]]()) { result, pair in
       let (key, value) = pair
       result[key] = value
-      result[key + debug_suffix] = value
+      // Debug versions disabled for swiftpm builds - only release versions are built
+      // result[key + debug_suffix] = value
     }
     .reduce(into: [String: [String: Any]]()) { result, pair in
       let (key, value) = pair
@@ -45,11 +46,7 @@ func deliverables(_ dict: [String: [String: Any]]) -> [String: [String: Any]] {
 
 // Cross-platform products (Linux, macOS, iOS)
 let crossPlatformProducts = deliverables([
-  "backend_xnnpack": [
-    "targets": [
-      "threadpool",
-    ],
-  ],
+  "backend_xnnpack": [:],  // Note: depends on threadpool but listed separately
   "executorch": [
     "libraries": [
       "c++",
@@ -58,47 +55,48 @@ let crossPlatformProducts = deliverables([
       "pthread",
     ],
   ],
-  "executorch_llm": [
-    "targets": [
-      "executorch",
-    ],
-  ],
-  "kernels_llm": [:],
-  "kernels_optimized": [
-    "appleFrameworks": [
-      "Accelerate",
-    ],
-    "targets": [
-      "threadpool",
-    ],
-  ],
-  "kernels_quantized": [:],
-  "kernels_torchao": [
-    "targets": [
-      "threadpool",
-    ],
-  ],
+  // "executorch_llm": [  // Disabled: requires tokenizers (abseil, re2, sentencepiece)
+  //   "targets": [
+  //     "executorch",
+  //   ],
+  // ],
+  // "kernels_llm": [:],  // Disabled: requires PyTorch headers
+  // "kernels_optimized": [  // Disabled: requires PyTorch headers
+  //   "appleFrameworks": [
+  //     "Accelerate",
+  //   ],
+  //   "targets": [
+  //     "threadpool",
+  //   ],
+  // ],
+  // "kernels_quantized": [:],  // Disabled: requires PyTorch headers
+  // "kernels_torchao": [  // Disabled: requires PyTorch headers
+  //   "targets": [
+  //     "threadpool",
+  //   ],
+  // ],
+  // threadpool: bundled with backend_xnnpack, not exported as separate product
 ])
 
 // Apple-only products (macOS, iOS)
-let appleOnlyProducts = deliverables([
-  "backend_coreml": [
-    "frameworks": [
-      "Accelerate",
-      "CoreML",
-    ],
-    "libraries": [
-      "sqlite3",
-    ],
-  ],
-  "backend_mps": [
-    "frameworks": [
-      "Metal",
-      "MetalPerformanceShaders",
-      "MetalPerformanceShadersGraph",
-    ],
-  ],
-])
+// Disabled: not built in swiftpm preset
+let appleOnlyProducts: [String: [String: Any]] = [:]
+  // "backend_coreml": [
+  //   "frameworks": [
+  //     "Accelerate",
+  //     "CoreML",
+  //   ],
+  //   "libraries": [
+  //     "sqlite3",
+  //   ],
+  // ],
+  // "backend_mps": [
+  //   "frameworks": [
+  //     "Metal",
+  //     "MetalPerformanceShaders",
+  //     "MetalPerformanceShadersGraph",
+  //   ],
+  // ],
 
 // Merge all products
 let products = crossPlatformProducts.merging(appleOnlyProducts) { (current, _) in current }
@@ -113,7 +111,7 @@ let packageProducts: [Product] = products.keys.map { key -> Product in
 
 var packageTargets: [Target] = []
 
-for (key, value) in targets {
+for (key, _) in targets {
   packageTargets.append(.binaryTarget(
     name: key,
     path: "cmake-out/\(key).artifactbundle"

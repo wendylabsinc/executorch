@@ -101,7 +101,7 @@ let packageProducts: [Product] = products.keys.map { key -> Product in
 
 var packageTargets: [Target] = []
 
-for (key, value) in targets {
+for (key, _) in targets {
   packageTargets.append(.binaryTarget(
     name: key,
     path: "cmake-out/\(key).xcframework"

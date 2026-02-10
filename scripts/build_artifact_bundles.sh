@@ -34,8 +34,8 @@ BUILD_MODE="Release"
 # Format: "name:component_libs:has_headers"
 FRAMEWORK_EXECUTORCH="executorch:libexecutorch.a,libexecutorch_core.a,libextension_apple.a,libextension_data_loader.a,libextension_flat_tensor.a,libextension_module.a,libextension_named_data_map.a,libextension_tensor.a:yes"
 FRAMEWORK_EXECUTORCH_LLM="executorch_llm:libabsl_base.a,libabsl_city.a,libabsl_hash.a,libabsl_int128.a,libabsl_low_level_hash.a,libabsl_raw_hash_set.a,libabsl_strings.a,libabsl_strings_internal.a,libextension_llm_runner.a,libre2.a,libsentencepiece.a,libtokenizers.a:no"
-FRAMEWORK_THREADPOOL="threadpool:libcpuinfo.a,libextension_threadpool.a,libpthreadpool.a:no"
-FRAMEWORK_BACKEND_XNNPACK="backend_xnnpack:libXNNPACK.a,libkleidiai.a,libxnnpack_backend.a,libxnnpack-microkernels-prod.a:no"
+FRAMEWORK_THREADPOOL="threadpool:backends/xnnpack/third-party/cpuinfo/libcpuinfo.a,extension/threadpool/libextension_threadpool.a,backends/xnnpack/third-party/pthreadpool/libpthreadpool.a:no"
+FRAMEWORK_BACKEND_XNNPACK="backend_xnnpack:backends/xnnpack/third-party/XNNPACK/libXNNPACK.a,kleidiai/libkleidiai.a,backends/xnnpack/libxnnpack_backend.a,backends/xnnpack/third-party/XNNPACK/libxnnpack-microkernels-prod.a:no"
 FRAMEWORK_KERNELS_LLM="kernels_llm:libcustom_ops.a:no"
 FRAMEWORK_KERNELS_OPTIMIZED="kernels_optimized:libcpublas.a,liboptimized_kernels.a,liboptimized_native_cpu_ops_lib.a,libportable_kernels.a:no"
 FRAMEWORK_KERNELS_QUANTIZED="kernels_quantized:libquantized_kernels.a,libquantized_ops_lib.a:no"
@@ -114,7 +114,7 @@ if $BUILD_LINUX_AARCH64; then
 fi
 
 if $BUILD_MACOS; then
-  PLATFORM_CONFIGS+=("macos:macos:macos-arm64")
+  PLATFORM_CONFIGS+=("macos-swiftpm:macos:macos-arm64")
 fi
 
 if $BUILD_IOS; then

@@ -314,6 +314,24 @@
         "string": "${hostSystemName}",
         "list": ["Linux"]
       }
+    },
+    {
+      "name": "macos-swiftpm",
+      "displayName": "Build ExecuTorch for macOS SwiftPM",
+      "inherits": ["common"],
+      "binaryDir": "${sourceDir}/cmake-out/swiftpm/macos",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/third-party/ios-cmake/ios.toolchain.cmake",
+        "EXECUTORCH_BUILD_PRESET_FILE": "${sourceDir}/tools/cmake/preset/swiftpm.cmake",
+        "PLATFORM": "MAC_ARM64",
+        "DEPLOYMENT_TARGET": "12.0",
+        "CMAKE_MACOSX_BUNDLE": "OFF"
+      },
+      "condition": {
+        "type": "inList",
+        "string": "${hostSystemName}",
+        "list": ["Darwin"]
+      }
     }
   ],
   "buildPresets": [
